@@ -11,7 +11,9 @@ import SwiftUI
 struct Traffic_Light_TimerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ConfigView()
+            }
         }
     }
 }

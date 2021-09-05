@@ -8,18 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		46FBEB2C26E47758001D8CC6 /* Traffic_Light_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB2B26E47758001D8CC6 /* Traffic_Light_TimerApp.swift */; };
-		46FBEB2E26E47758001D8CC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB2D26E47758001D8CC6 /* ContentView.swift */; };
+		46FBEB2E26E47758001D8CC6 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB2D26E47758001D8CC6 /* ConfigView.swift */; };
 		46FBEB3026E4775A001D8CC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46FBEB2F26E4775A001D8CC6 /* Assets.xcassets */; };
 		46FBEB3326E4775A001D8CC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46FBEB3226E4775A001D8CC6 /* Preview Assets.xcassets */; };
+		46FBEB3C26E477D7001D8CC6 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB3B26E477D7001D8CC6 /* Timer.swift */; };
+		46FBEB3F26E480FE001D8CC6 /* TimeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB3E26E480FE001D8CC6 /* TimeSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46FBEB2826E47758001D8CC6 /* Traffic Light Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Traffic Light Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FBEB2B26E47758001D8CC6 /* Traffic_Light_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traffic_Light_TimerApp.swift; sourceTree = "<group>"; };
-		46FBEB2D26E47758001D8CC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		46FBEB2D26E47758001D8CC6 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		46FBEB2F26E4775A001D8CC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46FBEB3226E4775A001D8CC6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		46FBEB3426E4775A001D8CC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46FBEB3B26E477D7001D8CC6 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		46FBEB3E26E480FE001D8CC6 /* TimeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				46FBEB2B26E47758001D8CC6 /* Traffic_Light_TimerApp.swift */,
-				46FBEB2D26E47758001D8CC6 /* ContentView.swift */,
+				46FBEB3A26E4776A001D8CC6 /* Views */,
+				46FBEB3D26E477DB001D8CC6 /* Model */,
 				46FBEB2F26E4775A001D8CC6 /* Assets.xcassets */,
 				46FBEB3426E4775A001D8CC6 /* Info.plist */,
 				46FBEB3126E4775A001D8CC6 /* Preview Content */,
@@ -67,6 +72,23 @@
 				46FBEB3226E4775A001D8CC6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		46FBEB3A26E4776A001D8CC6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46FBEB2D26E47758001D8CC6 /* ConfigView.swift */,
+				46FBEB3E26E480FE001D8CC6 /* TimeSelectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		46FBEB3D26E477DB001D8CC6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				46FBEB3B26E477D7001D8CC6 /* Timer.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46FBEB2E26E47758001D8CC6 /* ContentView.swift in Sources */,
+				46FBEB3C26E477D7001D8CC6 /* Timer.swift in Sources */,
+				46FBEB2E26E47758001D8CC6 /* ConfigView.swift in Sources */,
+				46FBEB3F26E480FE001D8CC6 /* TimeSelectionView.swift in Sources */,
 				46FBEB2C26E47758001D8CC6 /* Traffic_Light_TimerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
