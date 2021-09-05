@@ -9,25 +9,27 @@ import SwiftUI
 
 struct ConfigView: View {
     
-    @State private var gTime = Minute()
-    @State private var yTime = Minute()
-    @State private var rTime = Minute()
+    @State private var greenTime = Minute()
+    @State private var yellowTime = Minute()
+    @State private var redTime = Minute()
     
     var body: some View {
         NavigationView {
             VStack {
-//                HStack {
-//                    Spacer()
-//                    Text("Minutes")
-//                        .padding(.trailing)
-//                    Text("Seconds")
-//                }
-//                .padding(.trailing, 60)
-                TimeSelectionView(title: "Green Time", minute: $gTime.minute, second: $gTime.second)
+                TimeSelectionView(title: "Green Time",
+                                  titleColour: .green,
+                                  minute: $greenTime.minute,
+                                  second: $greenTime.second)
                 
-                TimeSelectionView(title: "Yellow Time", minute: $yTime.minute, second: $yTime.second)
+                TimeSelectionView(title: "Yellow Time",
+                                  titleColour: .yellow,
+                                  minute: $yellowTime.minute,
+                                  second: $yellowTime.second)
                 
-                TimeSelectionView(title: "Red Time", minute: $rTime.minute, second: $rTime.second)
+                TimeSelectionView(title: "Red Time",
+                                  titleColour: .red,
+                                  minute: $redTime.minute,
+                                  second: $redTime.second)
                 
                 Spacer()
                 StartButton.padding()
@@ -38,14 +40,14 @@ struct ConfigView: View {
     }
     
     var StartButton: some View {
-        Button(action: {}) {
-           Text("Start Timer")
-            .bold()
-            .foregroundColor(.white)
-               .frame(width: 330, height: 70, alignment: .center)
+        NavigationLink(destination: TimerView()) {
+            Text("Start Timer")
+                .bold()
+                .foregroundColor(.white)
+                .frame(width: 330, height: 70, alignment: .center)
                 .background(Color.green)
-            .cornerRadius(7)
-       }
+                .cornerRadius(7)
+        }
     }
     
 }

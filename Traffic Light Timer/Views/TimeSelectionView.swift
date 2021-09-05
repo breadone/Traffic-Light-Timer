@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimeSelectionView: View {
     var title: String
+    var titleColour: Color = .black
     @Binding var minute: Int
     @Binding var second: Int
     
@@ -16,6 +17,7 @@ struct TimeSelectionView: View {
         HStack {
             Text(title)
                 .font(.system(size: 30, weight: .bold, design: .default))
+                .foregroundColor(titleColour)
                 .padding(.leading, 25)
                 .padding(.trailing, 25)
             Spacer()
