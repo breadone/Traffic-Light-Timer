@@ -8,27 +8,46 @@
 import SwiftUI
 
 struct ConfigView: View {
-    @StateObject var timer = Timer()
     
-    @State private var gTime = 0
-    @State private var yTime = 0
-    @State private var rTime = 0 {
-        didSet {
-            
-        }
-    }
+    @State private var gTime = Minute()
+    @State private var yTime = Minute()
+    @State private var rTime = Minute()
     
     var body: some View {
-        HStack {
-            NumRangePicker(name: "Green Time", lBound: 0, uBound: 300, selection: $gTime)
-            NumRangePicker(name: "Yellow Time", lBound: 0, uBound: 300, selection: $yTime)
-            NumRangePicker(name: "Red Time", lBound: 0, uBound: 300, selection: $rTime)
+        NavigationView {
+            VStack {
+//                HStack {
+//                    Spacer()
+//                    Text("Minutes")
+//                        .padding(.trailing)
+//                    Text("Seconds")
+//                }
+//                .padding(.trailing, 60)
+                TimeSelectionView(title: "Green Time", minute: $gTime.minute, second: $gTime.second)
+                
+                TimeSelectionView(title: "Yellow Time", minute: $yTime.minute, second: $yTime.second)
+                
+                TimeSelectionView(title: "Red Time", minute: $rTime.minute, second: $rTime.second)
+                
+                Spacer()
+                StartButton.padding()
+                Spacer()
+            }
+            .navigationTitle("Traffic Light Timer")
         }
     }
     
-    func addIntToDate(_ num: Int) -> Date {
-        return Date().addingTimeInterval(Double(num))
+    var StartButton: some View {
+        Button(action: {}) {
+           Text("Start Timer")
+            .bold()
+            .foregroundColor(.white)
+               .frame(width: 330, height: 70, alignment: .center)
+                .background(Color.green)
+            .cornerRadius(7)
+       }
     }
+    
 }
 
 struct NumRangePicker: View {

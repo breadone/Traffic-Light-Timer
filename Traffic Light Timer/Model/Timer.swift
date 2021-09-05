@@ -29,3 +29,13 @@ public class Timer: ObservableObject, Codable {
     }
     
 }
+
+struct Minute {
+    var minute: Int = 0
+    var second: Int = 0
+    
+    var nowPlus: Date {
+        let components = DateComponents(minute: minute, second: second)
+        return Calendar(identifier: .gregorian).date(from: components)!
+    }
+}
