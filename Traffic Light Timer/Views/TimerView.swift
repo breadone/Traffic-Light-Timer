@@ -9,25 +9,18 @@ import SwiftUI
 
 struct TimerView: View {
     var timer: TLTimer
-    let model: TimerViewModel
+    @StateObject var model: TimerViewModel
 
-    @State private var BGColour: Color = .green
-    
-    @State private var greenTime: Float
-    @State private var yellowTime: Float
-    @State private var redTime: Float
+//    @State private var BGColour: Color = .green
     
     init(timer: TLTimer) {
         self.timer = timer
-        self.model = TimerViewModel(timer: timer)
-        self.greenTime = timer.GreenTime
-        self.yellowTime = timer.YellowTime
-        self.redTime = timer.RedTime
+        _model = StateObject(wrappedValue: TimerViewModel(timer: timer))
     }
     
     var body: some View {
         ZStack {
-            BGColour.ignoresSafeArea()
+            model.BGColour.ignoresSafeArea()
             TimerText
                 .foregroundColor(.white)
         }

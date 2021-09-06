@@ -10,35 +10,37 @@ import SwiftUI
 
 class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Float
-    @Published var mode: TimerMode = .green
+    @Published var BGColour: Color = .green
 
     var timer: TLTimer
 
-    let clock = Timer
-        .publish(every: 1, on: .main, in: .common)
-        .autoconnect()
+//    var clock = Timer.publish(every: 1, on: .main, in: .common)
+//        .autoconnect()
+        
+    var clock: Timer!
     
     init(timer: TLTimer) {
         self.timer = timer
         self.timeRemaining = timer.GreenTime
-        let _ = clock.sink { _ in
-            self.update()
-        }
+        self.clock = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
-    func update() {
+    @objc func update() {
+        print(timeRemaining)
         if timeRemaining > 0 {
             timeRemaining -= 1
         } else {
-            switch mode {
+            switch BGColour {
             case .green:
-                self.mode = .yellow
+                self.BGColour = .yellow
                 self.timeRemaining = timer.YellowTime
             case .yellow:
-                self.mode = .red
+                self.BGColour = .red
                 self.timeRemaining = timer.RedTime
             case .red:
                 print("timer done")
+            default:
+                break
             }
         }
     }
