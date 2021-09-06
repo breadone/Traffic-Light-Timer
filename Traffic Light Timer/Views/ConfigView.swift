@@ -40,7 +40,7 @@ struct ConfigView: View {
     }
     
     var StartButton: some View {
-        NavigationLink(destination: TimerView()) {
+        NavigationLink(destination: TimerView(timer: TLTimer(g: greenTime.totalSeconds, y: yellowTime.totalSeconds, r: redTime.totalSeconds))) {
             Text("Start Timer")
                 .bold()
                 .foregroundColor(.white)

@@ -18,7 +18,7 @@ public class TLTimer: ObservableObject, Codable {
         self.RedTime = r
     }
     
-    init(g: Int, y: Int, r: Float) {
+    init(g: Int, y: Int, r: Int) {
         self.GreenTime = Float(g)
         self.YellowTime = Float(y)
         self.RedTime = Float(r)
@@ -28,6 +28,10 @@ public class TLTimer: ObservableObject, Codable {
 struct Minute {
     var minute: Int = 0
     var second: Int = 0
+    
+    var totalSeconds: Int {
+        (minute * 60) + second
+    }
     
     var nowPlus: Date {
         let components = DateComponents(minute: minute, second: second)
