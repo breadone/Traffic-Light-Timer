@@ -13,20 +13,19 @@ class TimerViewModel: ObservableObject {
     @Published var BGColour: Color = .green
 
     var timer: TLTimer
-
-//    var clock = Timer.publish(every: 1, on: .main, in: .common)
-//        .autoconnect()
-        
     var clock: Timer!
     
     init(timer: TLTimer) {
         self.timer = timer
         self.timeRemaining = timer.GreenTime
-        self.clock = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        self.clock = Timer.scheduledTimer(timeInterval: 1,
+                                          target: self,
+                                          selector: #selector(update),
+                                          userInfo: nil,
+                                          repeats: true)
     }
     
     @objc func update() {
-        print(timeRemaining)
         if timeRemaining > 0 {
             timeRemaining -= 1
         } else {
@@ -38,7 +37,8 @@ class TimerViewModel: ObservableObject {
                 self.BGColour = .red
                 self.timeRemaining = timer.RedTime
             case .red:
-                print("timer done")
+                self.clock.invalidate()
+                self.timeRemaining = -2
             default:
                 break
             }

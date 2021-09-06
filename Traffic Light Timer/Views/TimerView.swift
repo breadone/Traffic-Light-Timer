@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct TimerView: View {
-    var timer: TLTimer
+    @Environment(\.presentationMode) private var presmode
     @StateObject var model: TimerViewModel
-
-//    @State private var BGColour: Color = .green
+    var timer: TLTimer
     
     init(timer: TLTimer) {
         self.timer = timer
@@ -23,12 +22,32 @@ struct TimerView: View {
             model.BGColour.ignoresSafeArea()
             TimerText
                 .foregroundColor(.white)
-        }
+        }.navigationBarBackButtonHidden(true)
     }
     
+    @ViewBuilder
     var TimerText: some View {
-        Text("\(model.timeRemaining)")
-            .bold()
+        if model.timeRemaining != -2 {
+            Text(String(format: "%.0f", model.timeRemaining))
+                .font(.system(size: 70, weight: .medium, design: .rounded))
+                .bold()
+        } else {
+            VStack {
+                Text("Timer Finished")
+                    .font(.system(size: 70, weight: .medium, design: .rounded))
+                    .bold()
+                
+                Button(action: {presmode.wrappedValue.dismiss()}) {
+                    Text("Done")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(.red)
+                        .padding()
+                }
+                .frame(width: 130, height: 50)
+                .background(Color.white)
+                .cornerRadius(17)
+            }
+        }
     }
     
     var TimerCircle: some View {
@@ -38,6 +57,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timer: TLTimer(g: 120, y: 5, r: 10))
+        TimerView(timer: TLTimer(g: 20, y: 5, r: 10))
     }
 }
