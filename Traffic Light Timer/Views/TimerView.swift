@@ -34,11 +34,11 @@ struct TimerView: View {
     }
     
     var TimerText: some View {
-        Text(String(format: "%.0f", abs(model.timeRemaining)))
+        Text(model.formatSeconds(abs(model.timeRemaining)))
             .foregroundColor(.white)
             .font(.system(size: 40, weight: .medium, design: .rounded))
             .bold()
-            .padding(.bottom, 25)
+            .padding(.bottom, 19)
             .padding(.leading, 25)
     }
     
@@ -54,27 +54,25 @@ struct TimerView: View {
                         .foregroundColor(model.BGColour)
                 }
             }
-            .padding(.bottom, 18)
-            .padding(.leading, 18)
 
             Button(action: {model.finish(); presmode.wrappedValue.dismiss()}) {
                 Text("Done")
                     .foregroundColor(model.BGColour)
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                    .font(.system(size: 21, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .frame(width: 75, height: 30, alignment: .center)
                     .padding(.init(top: 10, leading: 18, bottom: 10, trailing: 18))
-                    .background(Color.white).cornerRadius(17)
+                    .background(Capsule().foregroundColor(.white))
             }
-            .padding(.bottom, 18)
             .padding(.trailing, 18)
         }
+        .padding(.bottom, 18)
     }
     
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timer: TLTimer(g: 3, y: 4))
+        TimerView(timer: TLTimer(g: 60, y: 0))
     }
 }

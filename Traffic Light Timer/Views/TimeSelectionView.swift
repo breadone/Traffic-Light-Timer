@@ -16,7 +16,7 @@ struct TimeSelectionView: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.system(size: 30, weight: .bold, design: .default))
+                .font(.system(size: 30, weight: .bold, design: .rounded))
                 .foregroundColor(titleColour)
                 .padding(.leading, 25)
                 .padding(.trailing, 25)
@@ -40,6 +40,7 @@ fileprivate struct CustomPicker: View {
         Picker(title, selection: $selection) {
             ForEach(lBound ..< uBound + 1) { num in
                  Text("\(num)")
+                    .font(.system(size: 20, weight: .regular, design: .rounded))
             }
         }
         .frame(width: 80, height: 130)

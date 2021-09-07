@@ -26,7 +26,7 @@ struct ConfigView: View {
                                   second: $yellowTime.second)
                 Spacer()
                 StartButton
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 18)
             }
             .navigationTitle("Traffic Light Timer")
         }
@@ -35,10 +35,11 @@ struct ConfigView: View {
     var StartButton: some View {
         NavigationLink(destination: TimerView(timer: setUpTimer())) {
             Text("Start Timer")
-                .bold()
+                .font(.system(size: 21, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
-                .frame(width: 330, height: 70, alignment: .center)
+                .frame(width: 320, height: 70, alignment: .center)
                 .background(Color.green)
+//                .background(Capsule().foregroundColor(.green))
                 .cornerRadius(17)
         }
     }

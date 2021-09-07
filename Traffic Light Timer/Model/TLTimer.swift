@@ -8,17 +8,12 @@
 import Foundation
 
 public class TLTimer: ObservableObject, Codable {
-    var GreenTime: Float
-    var YellowTime: Float
-    
-    init(g: Float, y: Float) {
-        self.GreenTime = g
-        self.YellowTime = y
-    }
+    var GreenTime: Int
+    var YellowTime: Int
     
     init(g: Int, y: Int) {
-        self.GreenTime = Float(g)
-        self.YellowTime = Float(y)
+        self.GreenTime = g
+        self.YellowTime = y
     }
 }
 
@@ -28,11 +23,6 @@ struct Minute {
     
     var totalSeconds: Int {
         (minute * 60) + second
-    }
-    
-    var nowPlus: Date {
-        let components = DateComponents(minute: minute, second: second)
-        return Calendar(identifier: .gregorian).date(from: components)!
     }
 }
 

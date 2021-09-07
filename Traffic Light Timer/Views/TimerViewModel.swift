@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class TimerViewModel: ObservableObject {
-    @Published var timeRemaining: Float
+    @Published var timeRemaining: Int
     @Published var BGColour: Color
 
     var timer: TLTimer
@@ -22,9 +22,12 @@ class TimerViewModel: ObservableObject {
         if timer.GreenTime != 0 {
             self.timeRemaining = timer.GreenTime
             self.BGColour = .green
-        } else {
+        } else if timer.YellowTime != 0 {
             self.timeRemaining = timer.YellowTime
             self.BGColour = .yellow
+        } else {
+            self.timeRemaining = 0
+            self.BGColour = .red
         }
         
         self.clock = Timer.scheduledTimer(timeInterval: 1,
@@ -65,12 +68,8 @@ class TimerViewModel: ObservableObject {
         self.timeRemaining -= 1
     }
     
-    public func finish(completion: (() -> Void)? = nil) {
+    public func finish() {
         self.clock.invalidate()
-        
-        if let completion = completion {
-            completion()
-        }
     }
     
     public func togglePause() {
@@ -85,6 +84,13 @@ class TimerViewModel: ObservableObject {
                                               repeats: true)
             self.clockIsActive.toggle()
         }
+    }
+    
+    public func formatSeconds(_ seconds: Int) -> String {
+        let minutes = floor(Double(seconds) / 60)
+        let rSeconds = Double(seconds) - (minutes * 60)
+        
+        return String(format: "%0.0f:%02.0f", minutes, rSeconds)
     }
     
 }
