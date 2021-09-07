@@ -31,18 +31,41 @@ class TimerViewModel: ObservableObject {
         } else {
             switch BGColour {
             case .green:
-                self.BGColour = .yellow
-                self.timeRemaining = timer.YellowTime
+                if timer.YellowTime != 0 {
+                    toYellow()
+                } else if timer.RedTime != 0 {
+                    toRed()
+                } else { toFinish() }
+                
             case .yellow:
-                self.BGColour = .red
-                self.timeRemaining = timer.RedTime
+                if timer.RedTime != 0 {
+                    toRed()
+                } else {
+                    toFinish()
+                }
+                
             case .red:
-                self.clock.invalidate()
-                self.timeRemaining = -2
+                toFinish()
             default:
                 break
             }
         }
+    }
+    
+    fileprivate func toYellow() {
+        self.BGColour = .yellow
+        self.timeRemaining = timer.YellowTime
+    }
+    
+    fileprivate func toRed() {
+        self.BGColour = .red
+        self.timeRemaining = timer.RedTime
+    }
+    
+    fileprivate func toFinish() {
+        self.BGColour = .red
+        self.clock.invalidate()
+        self.timeRemaining = -2
     }
     
 }

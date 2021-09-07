@@ -40,17 +40,29 @@ struct ConfigView: View {
     }
     
     var StartButton: some View {
-        NavigationLink(destination: TimerView(timer: TLTimer(g: greenTime.totalSeconds, y: yellowTime.totalSeconds, r: redTime.totalSeconds))) {
+        NavigationLink(destination: TimerView(timer: setUpTimer())) {
             Text("Start Timer")
                 .bold()
                 .foregroundColor(.white)
                 .frame(width: 330, height: 70, alignment: .center)
                 .background(Color.green)
-                .cornerRadius(7)
+                .cornerRadius(17)
         }
+    }
+}
+
+extension ConfigView {
+    
+    func setUpTimer() -> TLTimer {
+        
+        return TLTimer(g: greenTime.totalSeconds,
+                       y: yellowTime.totalSeconds,
+                       r: redTime.totalSeconds)
     }
     
 }
+
+
 
 struct NumRangePicker: View {
     let name: String

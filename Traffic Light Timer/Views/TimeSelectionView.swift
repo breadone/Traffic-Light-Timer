@@ -22,16 +22,16 @@ struct TimeSelectionView: View {
                 .padding(.trailing, 25)
             Spacer()
             HStack(alignment: .center) {
-                quickpick(title: "Minute", lBound: 0, uBound: 10, selection: $minute)
+                CustomPicker(title: "Minute", lBound: 0, uBound: 10, selection: $minute)
                 
-                quickpick(title: "Second", lBound: 0, uBound: 59,selection: $second)
+                CustomPicker(title: "Second", lBound: 0, uBound: 59, selection: $second)
             }
             .padding(.trailing, 50)
         }
     }
 }
 
-fileprivate struct quickpick: View {
+fileprivate struct CustomPicker: View {
     var title: String
     var lBound, uBound: Int
     @Binding var selection: Int

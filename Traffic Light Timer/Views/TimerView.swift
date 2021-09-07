@@ -19,18 +19,29 @@ struct TimerView: View {
     
     var body: some View {
         ZStack {
-            model.BGColour.ignoresSafeArea()
+            model.BGColour
+                .ignoresSafeArea()
             TimerText
                 .foregroundColor(.white)
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
     }
     
     @ViewBuilder
     var TimerText: some View {
         if model.timeRemaining != -2 {
-            Text(String(format: "%.0f", model.timeRemaining))
-                .font(.system(size: 70, weight: .medium, design: .rounded))
-                .bold()
+            VStack {
+                Spacer()
+                Text(String(format: "%.0f", model.timeRemaining))
+                    .font(.system(size: 70, weight: .medium, design: .rounded))
+                    .bold()
+                Spacer()
+                Button(action: {presmode.wrappedValue.dismiss()}) {
+                    Text("Cancel")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .foregroundColor(.white)
+                }
+            }
         } else {
             VStack {
                 Text("Timer Finished")

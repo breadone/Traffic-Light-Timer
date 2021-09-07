@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		464D196426E5A77900F25998 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464D196326E5A77900F25998 /* TimerViewModel.swift */; };
 		465C2B4526E4A37500571002 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465C2B4426E4A37500571002 /* TimerView.swift */; };
-		46D71F2026E6123000CD86B9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D71F1F26E6123000CD86B9 /* Enums.swift */; };
 		46FBEB2C26E47758001D8CC6 /* Traffic_Light_TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB2B26E47758001D8CC6 /* Traffic_Light_TimerApp.swift */; };
 		46FBEB2E26E47758001D8CC6 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FBEB2D26E47758001D8CC6 /* ConfigView.swift */; };
 		46FBEB3026E4775A001D8CC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46FBEB2F26E4775A001D8CC6 /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		464D196326E5A77900F25998 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		465C2B4426E4A37500571002 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		46D71F1F26E6123000CD86B9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		46FBEB2826E47758001D8CC6 /* Traffic Light Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Traffic Light Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46FBEB2B26E47758001D8CC6 /* Traffic_Light_TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traffic_Light_TimerApp.swift; sourceTree = "<group>"; };
 		46FBEB2D26E47758001D8CC6 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				46FBEB3B26E477D7001D8CC6 /* TLTimer.swift */,
-				46D71F1F26E6123000CD86B9 /* Enums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,7 +170,6 @@
 				46FBEB3C26E477D7001D8CC6 /* TLTimer.swift in Sources */,
 				46FBEB2E26E47758001D8CC6 /* ConfigView.swift in Sources */,
 				46FBEB3F26E480FE001D8CC6 /* TimeSelectionView.swift in Sources */,
-				46D71F2026E6123000CD86B9 /* Enums.swift in Sources */,
 				464D196426E5A77900F25998 /* TimerViewModel.swift in Sources */,
 				46FBEB2C26E47758001D8CC6 /* Traffic_Light_TimerApp.swift in Sources */,
 			);
@@ -316,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pradyunsetti.Traffic-Light-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -338,7 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pradyunsetti.Traffic-Light-Timer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
