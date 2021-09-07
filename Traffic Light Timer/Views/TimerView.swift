@@ -21,30 +21,54 @@ struct TimerView: View {
         ZStack {
             model.BGColour
                 .ignoresSafeArea()
-            TimerText
-                .foregroundColor(.white)
+            VStack {
+                Spacer()
+                HStack {
+                    TimerText
+                    Spacer()
+                    TimerButtons
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
     }
     
     var TimerText: some View {
-        VStack {
-            Spacer()
-            Text(String(format: "%.0f", abs(model.timeRemaining)))
-                .font(.system(size: 40, weight: .medium, design: .rounded))
-                .bold()
-            Spacer()
-            Button(action: {model.finish();presmode.wrappedValue.dismiss()}) {
+        Text(String(format: "%.0f", abs(model.timeRemaining)))
+            .foregroundColor(.white)
+            .font(.system(size: 40, weight: .medium, design: .rounded))
+            .bold()
+            .padding(.bottom, 25)
+            .padding(.leading, 25)
+    }
+    
+    var TimerButtons: some View {
+        HStack {
+//            Button(action: {model.togglePause()}) {
+//                ZStack {
+//                    Circle()
+//                        .frame(width: 50, height: 50, alignment: .center)
+//                        .foregroundColor(.white)
+//                    Image(systemName: "pause")
+//                        .font(.system(size: 20, weight: .bold))
+//                        .foregroundColor(model.BGColour)
+//                }
+//            }
+//            .padding(.bottom, 18)
+//            .padding(.leading, 18)
+
+//            Spacer()
+            Button(action: {model.finish(); presmode.wrappedValue.dismiss()}) {
                 Text("Done")
                     .foregroundColor(model.BGColour)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                     .foregroundColor(.white)
-                    .frame(width: 50, height: 20, alignment: .center)
+                    .frame(width: 75, height: 30, alignment: .center)
                     .padding(.init(top: 10, leading: 18, bottom: 10, trailing: 18))
-                    .background(Color.white).cornerRadius(12)
+                    .background(Color.white).cornerRadius(17)
             }
             .padding(.bottom, 18)
-            
+            .padding(.trailing, 18)
         }
     }
     
@@ -52,6 +76,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timer: TLTimer(g: 20, y: 5))
+        TimerView(timer: TLTimer(g: 3, y: 4))
     }
 }

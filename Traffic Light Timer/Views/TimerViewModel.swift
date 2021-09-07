@@ -14,6 +14,7 @@ class TimerViewModel: ObservableObject {
 
     var timer: TLTimer
     private var clock: Timer!
+    private var clockIsActive: Bool = true
     
     init(timer: TLTimer) {
         self.timer = timer
@@ -69,6 +70,20 @@ class TimerViewModel: ObservableObject {
         
         if let completion = completion {
             completion()
+        }
+    }
+    
+    public func togglePause() {
+        if clockIsActive {
+            self.clock.invalidate()
+            self.clockIsActive.toggle()
+        } else {
+            self.clock = Timer.scheduledTimer(timeInterval: 1,
+                                              target: self,
+                                              selector: #selector(update),
+                                              userInfo: nil,
+                                              repeats: true)
+            self.clockIsActive.toggle()
         }
     }
     

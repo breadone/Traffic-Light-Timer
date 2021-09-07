@@ -45,9 +45,7 @@ struct ConfigView: View {
 }
 
 extension ConfigView {
-    
     func setUpTimer() -> TLTimer {
-        
         return TLTimer(g: greenTime.totalSeconds,
                        y: yellowTime.totalSeconds)
     }

@@ -22,7 +22,7 @@ struct TimeSelectionView: View {
                 .padding(.trailing, 25)
             Spacer()
             HStack(alignment: .center) {
-                CustomPicker(title: "Minute", lBound: 0, uBound: 10, selection: $minute)
+                CustomPicker(title: "Minute", lBound: 0, uBound: 20, selection: $minute)
                 
                 CustomPicker(title: "Second", lBound: 0, uBound: 59, selection: $second)
             }
