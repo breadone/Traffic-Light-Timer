@@ -10,14 +10,22 @@ import SwiftUI
 
 class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Float
-    @Published var BGColour: Color = .green
+    @Published var BGColour: Color
 
     var timer: TLTimer
-    var clock: Timer!
+    private var clock: Timer!
     
     init(timer: TLTimer) {
         self.timer = timer
-        self.timeRemaining = timer.GreenTime
+        
+        if timer.GreenTime != 0 {
+            self.timeRemaining = timer.GreenTime
+            self.BGColour = .green
+        } else {
+            self.timeRemaining = timer.YellowTime
+            self.BGColour = .yellow
+        }
+        
         self.clock = Timer.scheduledTimer(timeInterval: 1,
                                           target: self,
                                           selector: #selector(update),
@@ -25,7 +33,7 @@ class TimerViewModel: ObservableObject {
                                           repeats: true)
     }
     
-    @objc func update() {
+    @objc private func update() {
         if timeRemaining > 0 {
             timeRemaining -= 1
         } else {
@@ -33,39 +41,35 @@ class TimerViewModel: ObservableObject {
             case .green:
                 if timer.YellowTime != 0 {
                     toYellow()
-                } else if timer.RedTime != 0 {
-                    toRed()
-                } else { toFinish() }
-                
-            case .yellow:
-                if timer.RedTime != 0 {
-                    toRed()
                 } else {
-                    toFinish()
+                    redLoop()
                 }
-                
+            case .yellow:
+                redLoop()
             case .red:
-                toFinish()
+                redLoop()
             default:
                 break
             }
         }
     }
     
-    fileprivate func toYellow() {
+    private func toYellow() {
         self.BGColour = .yellow
         self.timeRemaining = timer.YellowTime
     }
     
-    fileprivate func toRed() {
+    private func redLoop() {
         self.BGColour = .red
-        self.timeRemaining = timer.RedTime
+        self.timeRemaining -= 1
     }
     
-    fileprivate func toFinish() {
-        self.BGColour = .red
+    public func finish(completion: (() -> Void)? = nil) {
         self.clock.invalidate()
-        self.timeRemaining = -2
+        
+        if let completion = completion {
+            completion()
+        }
     }
     
 }

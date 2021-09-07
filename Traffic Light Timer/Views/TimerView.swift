@@ -27,47 +27,31 @@ struct TimerView: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    @ViewBuilder
     var TimerText: some View {
-        if model.timeRemaining != -2 {
-            VStack {
-                Spacer()
-                Text(String(format: "%.0f", model.timeRemaining))
-                    .font(.system(size: 70, weight: .medium, design: .rounded))
-                    .bold()
-                Spacer()
-                Button(action: {presmode.wrappedValue.dismiss()}) {
-                    Text("Cancel")
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-                        .foregroundColor(.white)
-                }
+        VStack {
+            Spacer()
+            Text(String(format: "%.0f", abs(model.timeRemaining)))
+                .font(.system(size: 40, weight: .medium, design: .rounded))
+                .bold()
+            Spacer()
+            Button(action: {model.finish();presmode.wrappedValue.dismiss()}) {
+                Text("Done")
+                    .foregroundColor(model.BGColour)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .foregroundColor(.white)
+                    .frame(width: 50, height: 20, alignment: .center)
+                    .padding(.init(top: 10, leading: 18, bottom: 10, trailing: 18))
+                    .background(Color.white).cornerRadius(12)
             }
-        } else {
-            VStack {
-                Text("Timer Finished")
-                    .font(.system(size: 70, weight: .medium, design: .rounded))
-                    .bold()
-                
-                Button(action: {presmode.wrappedValue.dismiss()}) {
-                    Text("Done")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(.red)
-                        .padding()
-                }
-                .frame(width: 130, height: 50)
-                .background(Color.white)
-                .cornerRadius(17)
-            }
+            .padding(.bottom, 18)
+            
         }
     }
     
-    var TimerCircle: some View {
-        Text("")
-    }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timer: TLTimer(g: 20, y: 5, r: 10))
+        TimerView(timer: TLTimer(g: 20, y: 5))
     }
 }

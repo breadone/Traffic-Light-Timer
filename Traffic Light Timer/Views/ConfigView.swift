@@ -11,7 +11,6 @@ struct ConfigView: View {
     
     @State private var greenTime = Minute()
     @State private var yellowTime = Minute()
-    @State private var redTime = Minute()
     
     var body: some View {
         NavigationView {
@@ -25,15 +24,9 @@ struct ConfigView: View {
                                   titleColour: .yellow,
                                   minute: $yellowTime.minute,
                                   second: $yellowTime.second)
-                
-                TimeSelectionView(title: "Red Time",
-                                  titleColour: .red,
-                                  minute: $redTime.minute,
-                                  second: $redTime.second)
-                
                 Spacer()
-                StartButton.padding()
-                Spacer()
+                StartButton
+                    .padding(.bottom, 40)
             }
             .navigationTitle("Traffic Light Timer")
         }
@@ -56,40 +49,10 @@ extension ConfigView {
     func setUpTimer() -> TLTimer {
         
         return TLTimer(g: greenTime.totalSeconds,
-                       y: yellowTime.totalSeconds,
-                       r: redTime.totalSeconds)
+                       y: yellowTime.totalSeconds)
     }
     
 }
-
-
-
-struct NumRangePicker: View {
-    let name: String
-    var lBound: Int
-    var uBound: Int
-    @Binding var selection: Int
-    
-    var body: some View {
-        VStack {
-            Text(name)
-            Picker(name, selection: $selection) {
-                ForEach(lBound ..< uBound + 1) { num in
-                    Text("\(num)")
-                }
-            }
-            .labelsHidden()
-            .pickerStyle(WheelPickerStyle())
-            .frame(width: 100, height: 130, alignment: .bottom)
-            .clipped()
-        }
-        
-    }
-    
-}
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

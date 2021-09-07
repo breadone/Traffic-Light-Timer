@@ -10,18 +10,15 @@ import Foundation
 public class TLTimer: ObservableObject, Codable {
     var GreenTime: Float
     var YellowTime: Float
-    var RedTime: Float
     
-    init(g: Float, y: Float, r: Float) {
+    init(g: Float, y: Float) {
         self.GreenTime = g
         self.YellowTime = y
-        self.RedTime = r
     }
     
-    init(g: Int, y: Int, r: Int) {
+    init(g: Int, y: Int) {
         self.GreenTime = Float(g)
         self.YellowTime = Float(y)
-        self.RedTime = Float(r)
     }
 }
 
