@@ -44,20 +44,19 @@ struct TimerView: View {
     
     var TimerButtons: some View {
         HStack {
-//            Button(action: {model.togglePause()}) {
-//                ZStack {
-//                    Circle()
-//                        .frame(width: 50, height: 50, alignment: .center)
-//                        .foregroundColor(.white)
-//                    Image(systemName: "pause")
-//                        .font(.system(size: 20, weight: .bold))
-//                        .foregroundColor(model.BGColour)
-//                }
-//            }
-//            .padding(.bottom, 18)
-//            .padding(.leading, 18)
+            Button(action: {model.togglePause()}) {
+                ZStack {
+                    Circle()
+                        .frame(width: 50, height: 50, alignment: .center)
+                        .foregroundColor(.white)
+                    Image(systemName: model.clockIsActive ? "pause.fill" : "play.fill")
+                        .font(.system(size: 21, design: .rounded))
+                        .foregroundColor(model.BGColour)
+                }
+            }
+            .padding(.bottom, 18)
+            .padding(.leading, 18)
 
-//            Spacer()
             Button(action: {model.finish(); presmode.wrappedValue.dismiss()}) {
                 Text("Done")
                     .foregroundColor(model.BGColour)
