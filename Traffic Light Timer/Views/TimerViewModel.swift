@@ -14,7 +14,7 @@ class TimerViewModel: ObservableObject {
 
     var timer: TLTimer
     private var clock: Timer!
-    @Published  var clockIsActive: Bool = true
+    @Published var clockIsActive: Bool = true
     
     init(timer: TLTimer) {
         self.timer = timer

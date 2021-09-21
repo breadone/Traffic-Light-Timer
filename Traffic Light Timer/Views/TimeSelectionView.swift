@@ -21,11 +21,10 @@ struct TimeSelectionView: View {
                 .padding(.leading, 25)
                 .padding(.trailing, 25)
             Spacer()
-            HStack(alignment: .center) {
                 CustomPicker(title: "Minute", lBound: 0, uBound: 20, selection: $minute)
                 
                 CustomPicker(title: "Second", lBound: 0, uBound: 59, selection: $second)
-            }
+
             .padding(.trailing, 50)
         }
     }
@@ -43,7 +42,10 @@ fileprivate struct CustomPicker: View {
                     .font(.system(size: 20, weight: .regular, design: .rounded))
             }
         }
+        .pickerStyle(.wheel)
         .frame(width: 80, height: 130)
+        .compositingGroup()
         .clipped()
+        
     }
 }
