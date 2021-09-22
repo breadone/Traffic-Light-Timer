@@ -15,6 +15,7 @@ struct TimerView: View {
     init(timer: TLTimer) {
         self.timer = timer
         _model = StateObject(wrappedValue: TimerViewModel(timer: timer))
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     var body: some View {
@@ -31,6 +32,7 @@ struct TimerView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .statusBar(hidden: true)
     }
     
     var TimerText: some View {

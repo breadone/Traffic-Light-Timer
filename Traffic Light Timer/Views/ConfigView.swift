@@ -11,6 +11,9 @@ struct ConfigView: View {
     
     @State private var greenTime = Minute()
     @State private var yellowTime = Minute()
+    private var explanationText = """
+    Use this app to time your speeches, setting the total time to be the length of the speech, and splitting it between Green and Yellow to signal to yourself when you're about to go overtime.
+    """
     
     var body: some View {
         NavigationView {
@@ -24,7 +27,12 @@ struct ConfigView: View {
                                   titleColour: .yellow,
                                   minute: $yellowTime.minute,
                                   second: $yellowTime.second)
+//                Text(explanationText)
+//                    .frame(width: 320, alignment: .topLeading)
+//                    .font(.system(size: 18, weight: .medium, design: .rounded))
+//                    .padding()
                 Spacer()
+
                 StartButton
                     .padding(.bottom, 18)
             }
@@ -32,6 +40,7 @@ struct ConfigView: View {
         }
     }
     
+    @ViewBuilder
     var StartButton: some View {
         NavigationLink(destination: TimerView(timer: setUpTimer())) {
             Text("Start Timer")
@@ -39,9 +48,9 @@ struct ConfigView: View {
                 .foregroundColor(.white)
                 .frame(width: 320, height: 70, alignment: .center)
                 .background(Color.green)
-//                .background(Capsule().foregroundColor(.green))
                 .cornerRadius(17)
         }
+
     }
 }
 
@@ -50,7 +59,7 @@ extension ConfigView {
         return TLTimer(g: greenTime.totalSeconds,
                        y: yellowTime.totalSeconds)
     }
-    
+
 }
 
 struct ContentView_Previews: PreviewProvider {

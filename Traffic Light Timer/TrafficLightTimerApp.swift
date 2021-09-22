@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Traffic_Light_TimerApp: App {
+struct TrafficLightTimerApp: App {
     var body: some Scene {
         WindowGroup {
             ConfigView()
