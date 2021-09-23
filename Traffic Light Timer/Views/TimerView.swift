@@ -10,29 +10,33 @@ import SwiftUI
 struct TimerView: View {
     @Environment(\.presentationMode) private var presmode
     @StateObject var model: TimerViewModel
+    @State private var showingControls = true
     var timer: TLTimer
     
     init(timer: TLTimer) {
         self.timer = timer
         _model = StateObject(wrappedValue: TimerViewModel(timer: timer))
-        UIApplication.shared.isIdleTimerDisabled = true
     }
     
     var body: some View {
         ZStack {
-            model.BGColour
-                .ignoresSafeArea()
+            model.BGColour.ignoresSafeArea()
             VStack {
                 Spacer()
-                HStack {
-                    TimerText
-                    Spacer()
-                    TimerButtons
+                if showingControls {
+                    HStack {
+                        TimerText
+                        Spacer()
+                        TimerButtons
+                    }.transition(.opacity.combined(with: .move(edge: .bottom)))
                 }
             }
         }
+        .onTapGesture { withAnimation { self.showingControls.toggle() }}
         .navigationBarBackButtonHidden(true)
         .statusBar(hidden: true)
+        .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
+        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
     }
     
     var TimerText: some View {
@@ -56,7 +60,7 @@ struct TimerView: View {
                         .foregroundColor(model.BGColour)
                 }
             }
-
+            
             Button(action: {model.finish(); presmode.wrappedValue.dismiss()}) {
                 Text("Done")
                     .foregroundColor(model.BGColour)
@@ -75,6 +79,6 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(timer: TLTimer(g: 60, y: 0))
+        TimerView(timer: TLTimer(green: (1, 20), yellow: (0, 2)))
     }
 }

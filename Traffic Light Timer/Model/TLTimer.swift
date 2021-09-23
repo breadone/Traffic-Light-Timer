@@ -7,22 +7,22 @@
 
 import Foundation
 
-public class TLTimer: ObservableObject, Codable {
-    var GreenTime: Int
-    var YellowTime: Int
+public struct TLTimer  {
+    var greenMinutes, greenSeconds: Int
+    var yellowMinutes, yellowSeconds: Int
     
-    init(g: Int, y: Int) {
-        self.GreenTime = g
-        self.YellowTime = y
+    var GreenTime: Int {
+        greenSeconds + greenMinutes * 60
+    }
+    
+    var YellowTime: Int {
+        yellowSeconds + yellowMinutes * 60
+    }
+    
+    init(green: (min: Int, sec: Int), yellow: (min: Int, sec: Int)) {
+        self.greenMinutes = green.min
+        self.greenSeconds = green.sec
+        self.yellowMinutes = yellow.min
+        self.yellowSeconds = yellow.sec
     }
 }
-
-struct Minute {
-    var minute: Int = 0
-    var second: Int = 0
-    
-    var totalSeconds: Int {
-        (minute * 60) + second
-    }
-}
-

@@ -21,7 +21,7 @@ struct TimeSelectionView: View {
                 .padding(.leading, 25)
                 .padding(.trailing, 25)
             Spacer()
-                CustomPicker(title: "Minute", lBound: 0, uBound: 20, selection: $minute)
+                CustomPicker(title: "Minute", lBound: 0, uBound: 60, selection: $minute)
                 
                 CustomPicker(title: "Second", lBound: 0, uBound: 59, selection: $second)
 

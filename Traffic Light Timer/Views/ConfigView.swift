@@ -9,28 +9,27 @@ import SwiftUI
 
 struct ConfigView: View {
     
-    @State private var greenTime = Minute()
-    @State private var yellowTime = Minute()
-    private var explanationText = """
-    Use this app to time your speeches, setting the total time to be the length of the speech, and splitting it between Green and Yellow to signal to yourself when you're about to go overtime.
-    """
+    @State private var gM: Int = 0
+    @State private var gS: Int = 0
+    
+    @State private var yM: Int = 0
+    @State private var yS: Int = 0
+    
+//    @State private var green: (min: Int, sec: Int) = (min: 0, sec: 10)
+//    @State private var yellow: (min: Int, sec: Int) = (0, 0)
     
     var body: some View {
         NavigationView {
             VStack {
                 TimeSelectionView(title: "Green Time",
                                   titleColour: .green,
-                                  minute: $greenTime.minute,
-                                  second: $greenTime.second)
+                                  minute: $gM,
+                                  second: $gS)
                 
                 TimeSelectionView(title: "Yellow Time",
                                   titleColour: .yellow,
-                                  minute: $yellowTime.minute,
-                                  second: $yellowTime.second)
-//                Text(explanationText)
-//                    .frame(width: 320, alignment: .topLeading)
-//                    .font(.system(size: 18, weight: .medium, design: .rounded))
-//                    .padding()
+                                  minute: $yM,
+                                  second: $yS)
                 Spacer()
 
                 StartButton
@@ -56,8 +55,7 @@ struct ConfigView: View {
 
 extension ConfigView {
     func setUpTimer() -> TLTimer {
-        return TLTimer(g: greenTime.totalSeconds,
-                       y: yellowTime.totalSeconds)
+        return TLTimer(green: (gM, gS), yellow: (yM, yS))
     }
 
 }

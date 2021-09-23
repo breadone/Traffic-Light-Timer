@@ -90,7 +90,7 @@ class TimerViewModel: ObservableObject {
         let minutes = floor(Double(seconds) / 60)
         let rSeconds = Double(seconds) - (minutes * 60)
         
-        return String(format: "%0.0f:%02.0f", minutes, rSeconds)
+        return String(format: "%02.0f:%02.0f", minutes, rSeconds)
     }
     
 }
